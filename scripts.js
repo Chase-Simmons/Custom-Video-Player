@@ -39,6 +39,8 @@ function scrub(e) {
 }
 //  FUNCTIONS ^
 
+let mousedown = false;
+
 video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
@@ -54,4 +56,9 @@ ranges.forEach((range) =>
 );
 
 progress.addEventListener('click', scrub);
+progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
+
+document.addEventListener('mousedown', () => (mousedown = true));
+document.addEventListener('mouseup', () => (mousedown = false));
+
 //  CALLS ^
